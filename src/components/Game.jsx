@@ -1,25 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { TestQuestion } from '../TestData/TestData'
+import Question from './Question'
 
 export default function Game({ numQuestions }) {
 
-  const [currentQ, setCurrentQ] = useState(0)
+  const [currentQ, setCurrentQ] = useState(0);
+  const [score, setScore] = useState(0);
   const [questions, setQuestions] = useState([]);
+
   useEffect(() => {
-    const qArr = new Array(numQuestions).fill(TestQuestion);
-    setQuestions(Array.from(qArr));
-    //generate questions?
-    return () => {
-      //unmounting
-    }
-
+    setQuestions(Array.from(new Array(numQuestions).fill(TestQuestion)));
   }, [])
-
+  
   return (
     <div>
-      {questions.map(question => (
-        <p key={question.question}>{question.question}</p>
-      ))}
+      <Question questionData={questions[currentQ]} />
+      <button onClick={() => setCurrentQ(currentQ+1)}>Next</button>
     </div>
   )
 }
