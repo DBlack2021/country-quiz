@@ -6,7 +6,7 @@ export default function Game({ numQuestions }) {
   const [currentQ, setCurrentQ] = useState(0)
   const [questions, setQuestions] = useState([]);
   useEffect(() => {
-    const qArr = new Array(5).fill(TestQuestion);
+    const qArr = new Array(numQuestions).fill(TestQuestion);
     setQuestions(Array.from(qArr));
     //generate questions?
     return () => {
