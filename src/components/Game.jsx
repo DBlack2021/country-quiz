@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { TestQuestion } from '../TestData/TestData'
+import { getRandomQuestions } from '../utils';
 import Question from './Question'
 
 export default function Game({ numQuestions }) {
 
   const [currentQ, setCurrentQ] = useState(0);
   const [score, setScore] = useState(0);
-  const [questions, setQuestions] = useState([]);
+  const questions = getRandomQuestions(numQuestions);
 
-  useEffect(() => {
-    setQuestions(Array.from(new Array(numQuestions).fill(TestQuestion)));
-  }, [])
+  console.log(questions);
   
   return (
     <div>
       <Question questionData={questions[currentQ]} />
-      <button onClick={() => setCurrentQ(currentQ+1)}>Next</button>
+      <button disabled={currentQ >= numQuestions - 1} onClick={() => setCurrentQ(currentQ+1)}>Next</button>
     </div>
   )
 }
