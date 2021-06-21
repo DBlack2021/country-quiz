@@ -4,6 +4,19 @@ export const TestQuestion = {
   correct: 2,
 }
 
+const getRandomQuestion = () => {
+  return {
+    question: Math.random().toString(36).substring(2),
+    choices: [1, 4, 53, 6],
+    correct: 2
+  }
+}
+
 export const getRandomQuestions = (numQuestions) => {
-  return Array.from(new Array(parseInt(numQuestions)).fill(TestQuestion));
+  let questions = [];
+  for(let i = 0; i < numQuestions; i++) {
+    questions.push(getRandomQuestion());
+  }
+  console.log(questions);
+  return questions;
 }
