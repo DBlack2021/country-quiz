@@ -5,15 +5,20 @@ import Question from './Question'
 export default function Game({ numQuestions }) {
 
   const [currentQ, setCurrentQ] = useState(0);
-  const [score, setScore] = useState(0);
   const questions = getRandomQuestions(numQuestions);
-
-  console.log(questions);
   
+  const checkAnswers = () => {
+    console.log("poop!");
+  }
+
   return (
     <div>
       <Question questionData={questions[currentQ]} />
-      <button disabled={currentQ >= numQuestions - 1} onClick={() => setCurrentQ(currentQ+1)}>Next</button>
+      { currentQ < numQuestions - 1 ? 
+        <button onClick={() => setCurrentQ(currentQ+1)}>Next</button>
+        :
+        <button onClick={checkAnswers}>Submit</button>
+      }
     </div>
   )
 }
