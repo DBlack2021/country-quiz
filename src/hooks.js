@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 
+//code adapted from https://github.com/thivi/use-non-initial-effect-hook
 export const useNonInitialEffect = (effect, deps) => {
   const initialRender = useRef(true);
   useEffect(() => {
