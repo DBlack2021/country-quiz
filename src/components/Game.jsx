@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import QuestionOptions from './QuestionOptions';
+import { useNonInitialEffect } from '../hooks'
 
 export default function Game({ questions }) {
 
@@ -8,11 +9,13 @@ export default function Game({ questions }) {
   const [selected, setSelected] = useState(0);
   const correctAnswers = questions.map(question => question.correct); //an array of the indecies of correct answers   
 
-  const onNext = () => {
-    //The issue is that it is running setGuesses last
-    setGuesses([...guesses, selected]); //add the guess
+  useNonInitialEffect(() => {
     if(currentQ < questions.length - 1) setCurrentQ(currentQ + 1); //move forward
     if(currentQ >= questions.length - 1) checkAnswers(); //if button was submit, check answers
+  }, [guesses])
+
+  const onNext = () => {
+    setGuesses([...guesses, selected]); //add the guess
   }
 
   const checkAnswers = () => {

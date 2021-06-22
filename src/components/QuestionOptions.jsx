@@ -10,7 +10,7 @@ export default function QuestionOptions({ options, setSelected }) {
     <div>
       <form>
         {options.map(option => (
-          <div>
+          <div key={options.indexOf(option)}>
             <input type="radio" name="option" onChange={handleChange} key={options.indexOf(option)} value={options.indexOf(option)} /> {option}
           </div>
         ))}
