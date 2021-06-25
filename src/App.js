@@ -2,7 +2,6 @@ import './App.css';
 import { useState } from 'react'
 import StartMenu from './components/StartMenu';
 import Game from './components/Game';
-import { getRandomQuestions } from './utils';
 
 function App() {
   const [started, setStarted] = useState(false)
@@ -13,7 +12,7 @@ function App() {
       {!started ? 
         <StartMenu setStarted={setStarted} setNumQuestions={setNumQuestions} />
         :
-        <Game questions={getRandomQuestions(numQuestions)} />
+        <Game numQuestions={numQuestions} />
       }
     </div>
   );
